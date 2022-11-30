@@ -6,9 +6,7 @@ metadata:
     app: techtrends
   namespace: {{ .Values.namespace.name }}
 spec:
-  {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
-  {{- end }}
   selector:
     matchLabels:
       app: techtrends
@@ -32,7 +30,7 @@ spec:
           readinessProbe:
             httpGet:
               path: {{ .Values.readinessProbe.httpGet.path }}
-              port: {{ .Values.readinessProbe.httpGet.path }}
+              port: {{ .Values.readinessProbe.httpGet.port }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       
